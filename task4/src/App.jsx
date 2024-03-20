@@ -1,4 +1,5 @@
-import List from "./List"
+
+import Button from "./Button"
 
 function App() {
 
@@ -6,9 +7,11 @@ function App() {
 
   return (
     <>
-      <p>Task4 - Create a component named "List" that takes one prop - "items". The component should display an unordered list element with the given list items.</p>
+      {/* <p>Task4 - Create a component named "List" that takes one prop - "items". The component should display an unordered list element with the given list items.</p>
 
-      <List items={names} />
+      <List items={names} /> */}
+
+      <Button/>
 
     </>
   )
