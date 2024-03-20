@@ -1,25 +1,30 @@
 import React from 'react'
-import {useForm} from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
-function Form({handleSubmitDataForm}) {
+function Form({ handleSubmitDataForm }) {
 
-    const {register , handleSubmit} = useForm()
+    const { register, handleSubmit, reset } = useForm()
+
+    const handleFormSubmit = (data) => {
+        handleSubmitDataForm(data);
+        reset();
+    }
 
     return (
         <div className='mt-10 flex justify-center  ' >
 
-            <form className='flex gap-10 ' onSubmit={handleSubmit(data => handleSubmitDataForm(data))}>
+            <form className='flex gap-10 ' onSubmit={handleSubmit(handleFormSubmit)}>
 
-                <input {...register('name')} className='rounded-md px-2 py-1 font-semibold text-base outline-none' type="text" placeholder='name'/>
+                <input {...register('name')} className='rounded-md px-2 py-1 font-semibold text-base outline-none' type="text" placeholder='name' />
 
-                <input {...register('email')} className='rounded-md px-2 py-1 font-semibold text-base outline-none' type="text" placeholder='email'/>
-                
-                <input {...register('image')} className='rounded-md px-2 py-1 font-semibold text-base outline-none' type="text" placeholder='image url'/>
+                <input {...register('email')} className='rounded-md px-2 py-1 font-semibold text-base outline-none' type="text" placeholder='email' />
+
+                <input {...register('image')} className='rounded-md px-2 py-1 font-semibold text-base outline-none' type="text" placeholder='image url' />
 
                 <input className='rounded-md px-5 py-1 bg-blue-500 text-white font-semibold' type="submit" value="submit" />
 
             </form>
-            
+
         </div>
     )
 }
