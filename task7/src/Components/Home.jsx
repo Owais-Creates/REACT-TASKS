@@ -1,0 +1,14 @@
+import React from 'react'
+
+const Home = () => {
+    return (
+        <>
+            <div className='mt-10 flex flex-col items-center w-1/2 bg-zinc-200 m-auto ' >
+                <h1 className='text-5xl' >Home</h1>
+                <p className='text-1xl' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat temporibus doloremque ipsa saepe odit porro. Dolore fugiat cum ratione reiciendis.</p>
+            </div>
+        </>
+    )
+}
+
+export default Home
