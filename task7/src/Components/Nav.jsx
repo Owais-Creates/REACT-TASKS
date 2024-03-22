@@ -19,7 +19,7 @@ const Nav = () => {
                 return [
                     e.isActive ? "text-red-600" : "",
                     e.isActive ? "font-bold" : ""
-                ]
+                ].join(" ")
             }} >
                 Users
             </NavLink>
