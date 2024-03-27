@@ -6,7 +6,7 @@ function SearchBar({ searchMovie, setSearchMovie, fetchMovieData }) {
             <div className="input flex justify-center  px-5 lg:px-0 py-5">
                 <input
                     value={searchMovie}
-                    onChange={(e) => setSearchMovie(e.target.value)}
+                    onChange={(e) => setSearchMovie(e.target.value.trim())}
                     type="text"
                     placeholder='Search here'
                     className=' shadow-md bg-gray-200 placeholder-gray-400 rounded-l-lg 
