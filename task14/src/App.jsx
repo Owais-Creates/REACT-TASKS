@@ -10,12 +10,26 @@ import './App.css'; // Importing app.css file
 const App = () => {
   const [todo, setTodo] = useState('');
   const [todoData, setTodoData] = useState([]);
+  const [error,setError] = useState("")
 
   const addTask = () => {
-    if (todo.trim() === '') return;
+    if (todo.trim() === ''){
+      setError("Input field is empty please enter something");
+      return;
+    }
     setTodoData([...todoData, todo]);
     setTodo('');
   };
+
+  const deleteTodo = (index) => {
+    const updatedItems = todoData.filter((item, id) => id !== index);
+    setTodoData(updatedItems);
+  };
+
+  const handleError = () => {
+    setError("")
+  }
+  
 
   return (
     <>
@@ -27,6 +41,7 @@ const App = () => {
             type='text'
             placeholder='Here...'
             value={todo}
+            onFocus={handleError}
             onChange={(e) => {
               setTodo(e.target.value);
             }}
@@ -34,22 +49,23 @@ const App = () => {
           <button className='bg-red-200 p-3 mt-2' onClick={addTask}>
             Add Task
           </button>
+          {error}
           <div className='mt-5 text-center text-2xl'>
             <ul className='text-left font-mono '>
               {todoData.length > 0 ? (
-                
-                  todoData.map((elem, index) => (
 
-                    <div className='flex justify-between items-center mb-8 '>
-                      <li className='todo-list-item text-[20px] bg-red-100 p-2 w-[350px] ' key={index}><p>{elem}</p></li>
-                      <div>
-                        <button className='text-[20px] '><FaRegTrashAlt /></button>
-                        <button className='text-[20px] ml-4 '><FaEdit /></button>
-                      </div>
+                todoData.map((elem, index) => (
+
+                  <div key={index} className='flex justify-between items-center mb-8 '>
+                    <li className='todo-list-item text-[20px p-2 w-[350px] '><p>{elem}</p></li>
+                    <div>
+                      <button className='text-[20px] ' onClick={() => deleteTodo(index)} ><FaRegTrashAlt /></button>
+                      <button className='text-[20px] ml-4 '><FaEdit /></button>
                     </div>
+                  </div>
 
-                  ))
-                
+                ))
+
               ) : (
                 <h2 className='text-center font-bold ' >NO TASKS YET <FaRegFaceSadCry className='inline' /> </h2>
               )}
