@@ -4,12 +4,13 @@ import UseState from './Components/UseState'
 import Array from './Components/Array'
 import Bmi from './Components/Bmi'
 import Counter from './Components/Counter'
+import Quiz from './Components/Quiz'
 
 function App() {
   return (
 
     <>
-      <Counter />
+      <Quiz />
     </>
 
   )
