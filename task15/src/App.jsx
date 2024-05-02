@@ -8,64 +8,13 @@ import Select from './Components/Select'
 import AddFriends from './Components/AddFriends'
 import Music from './Components/Music'
 import Navbar from './Components/Navbar'
+import StopWatch from './Components/StopWatch'
 
 function App() {
 
-  const dummyData = [
-    {
-      name: "Atif aslam",
-      song: "Dil se",
-      image: "https://static.toiimg.com/thumb/msid-80172462,width-400,resizemode-4/80172462.jpg",
-      isFavourite: false
-    },
-    {
-      name: "Gian",
-      song: "Kaan Phaad",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT81S6C2fykuPPLBwltGt30xNf9jGkBVE95wro1aKmGjA&s",
-      isFavourite: false
-    },
-    {
-      name: "Doraemon",
-      song: "Robotics",
-      image: "https://p1.hiclipart.com/preview/975/20/895/doraemon-1-singing-doraemon-clip-art-png-clipart.jpg",
-      isFavourite: false
-    },
-    {
-      name: "Dhinchak pooja",
-      song: "Nahi sunna",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhGxKybEUHfmHygRej-ZfaXPpgHRNO3GT-7OaDx2lAOQ&s",
-      isFavourite: false
-    },
-
-  ]
-
-  const [data, setData] = useState(dummyData);
-
-  const handleClick = (dataIndex) => {
-
-    setData(prev => {
-      return prev.map((item, index) => {
-        if (index === dataIndex) { return { ...item, isFavourite: !item.isFavourite } }
-        return item;
-      })
-
-    })
-
-  };
-
 
   return (
-    <div className='w-full h-screen bg-zinc-200' >
-      <Navbar songData = {data} />
-
-      <div className='flex justify-center flex-wrap px-[150px] py-10 gap-10'>
-
-        {data.map((item, index) => (
-          <Music key={index} index={index} values={item} handleClick={handleClick} />
-        ))}
-
-      </div>
-    </div>
+    <StopWatch />
   )
 
 }
@@ -74,7 +23,47 @@ function App() {
 
 export default App
 
+// const dummyData = [
+//   {
+//     name: "Atif aslam",
+//     song: "Dil se",
+//     image: "https://static.toiimg.com/thumb/msid-80172462,width-400,resizemode-4/80172462.jpg",
+//     isFavourite: false
+//   },
+//   {
+//     name: "Gian",
+//     song: "Kaan Phaad",
+//     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT81S6C2fykuPPLBwltGt30xNf9jGkBVE95wro1aKmGjA&s",
+//     isFavourite: false
+//   },
+//   {
+//     name: "Doraemon",
+//     song: "Robotics",
+//     image: "https://p1.hiclipart.com/preview/975/20/895/doraemon-1-singing-doraemon-clip-art-png-clipart.jpg",
+//     isFavourite: false
+//   },
+//   {
+//     name: "Dhinchak pooja",
+//     song: "Nahi sunna",
+//     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhGxKybEUHfmHygRej-ZfaXPpgHRNO3GT-7OaDx2lAOQ&s",
+//     isFavourite: false
+//   },
 
+// ]
+
+// const [data, setData] = useState(dummyData);
+
+// const handleClick = (dataIndex) => {
+
+//   setData(prev => {
+//     return prev.map((item, index) => {
+//       if (index === dataIndex) { return { ...item, isFavourite: !item.isFavourite } }
+//       return item;
+//     })
+
+//   })
+
+// };
 
 
 
