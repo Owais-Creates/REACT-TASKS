@@ -9,12 +9,15 @@ import AddFriends from './Components/AddFriends'
 import Music from './Components/Music'
 import Navbar from './Components/Navbar'
 import StopWatch from './Components/StopWatch'
+import Password from './Components/Password'
 
 function App() {
 
 
   return (
-    <StopWatch />
+    <div className='w-full h-screen flex justify-center items-center bg-zinc-400'>
+      <Password />
+    </div>
   )
 
 }
