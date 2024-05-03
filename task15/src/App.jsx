@@ -10,13 +10,15 @@ import Music from './Components/Music'
 import Navbar from './Components/Navbar'
 import StopWatch from './Components/StopWatch'
 import Password from './Components/Password'
+import RandomNumber from './Components/RandomNumber'
+import FormHandling from './Components/FormHandling'
 
 function App() {
 
 
   return (
     <div className='w-full h-screen flex justify-center items-center bg-zinc-400'>
-      <Password />
+     <FormHandling/>
     </div>
   )
 
