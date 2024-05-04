@@ -1,56 +1,67 @@
+import React, { useRef, useState } from 'react';
 
-import React, { useState } from 'react'
+const StopWatch = () => {
+  const [timer, setTimer] = useState({ hours: "0", minutes: "0", seconds: "0" });
+  const [isRunning, setIsRunning] = useState(false);
+  const ref = useRef(null);
 
-function StopWatch() {
+  const start = () => {
+    if (!isRunning) {
+      setIsRunning(true);
+      ref.current = setInterval(() => {
 
-    const [seconds, setSeconds] = useState(0)
-    const [minutes, setMinutes] = useState(0)
-    const [hours, setHours] = useState(0)
-    const [isDisabled, setIsDisabled] = useState(false);
-    let intervalId;
+        const newSeconds = timer.seconds === 59 ? 0 : timer.seconds + 1;
+        const newMinutes = newSeconds === 0 && timer.minutes !== 59 ? timer.minutes + 1 : timer.minutes;
+        const newHours = newMinutes === 0 && timer.hours !== 23 ? timer.hours + 1 : timer.hours;
 
-    const startStopWatch = () => {
-        setIsDisabled(true);  // Disable the button to prevent multiple clicks in a short span of time.
-        intervalId = setInterval(() => {
-            setSeconds(prevSeconds => prevSeconds + 1);
-
-        }, 1000)
+        setTimer({
+          hours: formatTime(newHours),
+          minutes: formatTime(newMinutes),
+          seconds: formatTime(newSeconds),
+        });
+      }, 1000); 
     }
+  };
 
-    const stopWatch = () => {
-        window.location.reload()
+  const stop = () => {
+    if (isRunning) {
+      setIsRunning(false);
+      clearInterval(ref.current);
+      ref.current = null; 
     }
+  };
 
-    if (seconds === 60) {
-        setMinutes(prevMinutes => prevMinutes + 1);
-        setSeconds(0);
+  const reset = () => {
+    setIsRunning(false);
+    clearInterval(ref.current);
+    ref.current = null;
+    setTimer({ hours: "0", minutes: "0", seconds: "0" });
+  };
 
-    } else if (minutes === 60) {
-        setHours(prevHours => prevHours + 1);
-        setMinutes(0)
-    }
+  const formatTime = (value) => String(value).padStart(2, '0');
 
-    return (
+  return (
+    <>
+      <h1 className='font-sans text-3xl font-bold' >STOPWATCH</h1>
 
-        <>
-            <div className='w-full h-screen flex flex-col justify-center items-center'>
+      <div className='w-[300px] h-[150px] bg-white rounded-xl ml-3 flex flex-col justify-center items-center gap-8' >
 
-                <h1 className='text-5xl font-sans font-bold' > StopWatch</h1>
-                <div className='w-[300px] h-[100px] flex justify-center items-center text-5xl font-sans font-bold gap-2' >
+        <div className='flex text-5xl font-sans font-extrabold gap-5' >
+          <p>{timer.hours}</p>
+          <p>{timer.minutes}</p>
+          <p>{timer.seconds}</p>
+        </div>
 
-                    <p>{hours}: </p>
-                    <p>{minutes}: </p>
-                    <p>{seconds}</p>
+        <div className='flex gap-4 font-sans font-semibold'>
+          <button onClick={start} className='py-2 px-6 bg-green-600 text-white rounded-lg' disabled={isRunning}>Start</button>
+          <button onClick={stop} className='py-2 px-6 bg-red-600 text-white rounded-lg' disabled={!isRunning}>Stop</button>
+          <button onClick={reset} className='py-2 px-6 bg-black text-white rounded-lg'>Reset</button>
+        </div>
 
-                </div>
 
-                <div className='mt-4'>
-                    <button onClick={startStopWatch} disabled={isDisabled} className={`py-2 px-6 font-sans uppercase ${isDisabled ? 'bg-green-200 text-black' : 'bg-green-500  text-white '} font-bold rounded-lg mr-5 `} >Start</button>
-                    <button onClick={stopWatch} className='py-2 px-6 bg-red-500 font-sans text-white uppercase font-bold rounded-lg ' >Reset</button>      </div>
+      </div>
+    </>
+  );
+};
 
-            </div>
-        </>
-    )
-}
-
-export default StopWatch
+export default StopWatch;
