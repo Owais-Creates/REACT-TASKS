@@ -5,3 +5,7 @@
 *{
     font-family: "Gilroy";
 }
+
+#board{
+    border: 2px solid black;
+}

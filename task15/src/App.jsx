@@ -12,13 +12,14 @@ import StopWatch from './Components/StopWatch'
 import Password from './Components/Password'
 import RandomNumber from './Components/RandomNumber'
 import FormHandling from './Components/FormHandling'
+import Board from './Components/Stopwatch/Board'
 
 function App() {
 
 
   return (
-    <div className='w-full h-screen flex justify-center items-center bg-zinc-400'>
-      <StopWatch />
+    <div className='w-full h-screen flex justify-center items-center bg-zinc-200'>
+      <Board />
     </div>
   )
 
