@@ -13,13 +13,21 @@ import Password from './Components/Password'
 import RandomNumber from './Components/RandomNumber'
 import FormHandling from './Components/FormHandling'
 import Board from './Components/Stopwatch/Board'
+import ContextPRC from './Components/ContextPRC'
+import { useContext } from 'react'
+import { CounterContext } from './context/Counter'
 
 function App() {
 
+  const counter = useContext(CounterContext);
+  const { count } = counter
 
   return (
     <div className='w-full h-screen flex justify-center items-center bg-zinc-200'>
-      <Board />
+      <h1>Counter{count}</h1>
+      <ContextPRC />
+      <ContextPRC />
+      <ContextPRC />
     </div>
   )
 
